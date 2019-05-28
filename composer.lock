@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "214fe4821e675b4f9ae0eff2b2286578",
+    "content-hash": "2a554e4710016b02728acec56bd9d7f0",
     "packages": [
         {
             "name": "defuse/php-encryption",
@@ -71,16 +71,16 @@
         },
         {
             "name": "digitalsigma/imageable",
-            "version": "4.0.2",
+            "version": "4.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/digitalsigmaio/imageable.git",
-                "reference": "d2047e77721db8bca6ead96e911bc8586577d4b6"
+                "reference": "59e4a81baced399dbade7fdde6af335f4edfb634"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/digitalsigmaio/imageable/zipball/d2047e77721db8bca6ead96e911bc8586577d4b6",
-                "reference": "d2047e77721db8bca6ead96e911bc8586577d4b6",
+                "url": "https://api.github.com/repos/digitalsigmaio/imageable/zipball/59e4a81baced399dbade7fdde6af335f4edfb634",
+                "reference": "59e4a81baced399dbade7fdde6af335f4edfb634",
                 "shasum": ""
             },
             "require": {
@@ -111,20 +111,20 @@
                 }
             ],
             "description": "Library for image upload.",
-            "time": "2019-05-22T09:57:54+00:00"
+            "time": "2019-05-27T13:11:45+00:00"
         },
         {
             "name": "digitalsigma/translatable",
-            "version": "v1.2",
+            "version": "v1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/digitalsigmaio/translatable.git",
-                "reference": "fc03069a0e828a31508a75f18ac324671c2a33b2"
+                "reference": "226d87ef3ee91f65be4043f0bc50420317a054e7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/digitalsigmaio/translatable/zipball/fc03069a0e828a31508a75f18ac324671c2a33b2",
-                "reference": "fc03069a0e828a31508a75f18ac324671c2a33b2",
+                "url": "https://api.github.com/repos/digitalsigmaio/translatable/zipball/226d87ef3ee91f65be4043f0bc50420317a054e7",
+                "reference": "226d87ef3ee91f65be4043f0bc50420317a054e7",
                 "shasum": ""
             },
             "type": "library",
@@ -151,7 +151,7 @@
                 }
             ],
             "description": "Library managing translations in Laravel",
-            "time": "2019-05-26T12:48:12+00:00"
+            "time": "2019-05-28T08:06:28+00:00"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -1880,16 +1880,16 @@
         },
         {
             "name": "phpseclib/phpseclib",
-            "version": "2.0.15",
+            "version": "2.0.17",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpseclib/phpseclib.git",
-                "reference": "11cf67cf78dc4acb18dc9149a57be4aee5036ce0"
+                "reference": "3ca5b88d582c69178c8d01fd9d02b94e15042bb8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/11cf67cf78dc4acb18dc9149a57be4aee5036ce0",
-                "reference": "11cf67cf78dc4acb18dc9149a57be4aee5036ce0",
+                "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/3ca5b88d582c69178c8d01fd9d02b94e15042bb8",
+                "reference": "3ca5b88d582c69178c8d01fd9d02b94e15042bb8",
                 "shasum": ""
             },
             "require": {
@@ -1968,7 +1968,7 @@
                 "x.509",
                 "x509"
             ],
-            "time": "2019-03-10T16:53:45+00:00"
+            "time": "2019-05-26T20:38:34+00:00"
         },
         {
             "name": "psr/container",
@@ -5713,7 +5713,7 @@
         }
     ],
     "aliases": [],
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,

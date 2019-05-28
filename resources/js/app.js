@@ -67,7 +67,8 @@ Vue.mixin({
 const store = new Vuex.Store({
     state: {
         locale: 'en',
-        pageTitle: ''
+        pageTitle: '',
+        drawer: false,
     },
     getters: {
         getLocale(state) {
@@ -75,6 +76,9 @@ const store = new Vuex.Store({
         },
         getPageTitle(state) {
             return state.pageTitle
+        },
+        getDrawer(state) {
+            return state.drawer;
         }
     },
     mutations: {
@@ -83,6 +87,9 @@ const store = new Vuex.Store({
         },
         changePageTitle(state, title) {
             state.pageTitle = title;
+        },
+        changeDrawer(state, value) {
+            state.drawer = value;
         }
     },
     actions: {
@@ -117,14 +124,15 @@ Vue.use(Vuetify, {
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-import {mapGetters} from "vuex";
+import {mapGetters, mapMutations} from "vuex";
 const app = new Vue({
     el: '#app',
     store,
     computed: {
         ...mapGetters({
             locale: 'getLocale',
-            title: 'getPageTitle'
+            title: 'getPageTitle',
+            getDrawer: 'getDrawer',
         }),
         otherLocale() {
             let lang = this.$vuetify.lang.current;
@@ -135,6 +143,17 @@ const app = new Vue({
                 key: locale,
                 value: text
             };
+        },
+        drawer: {
+            get: function () {
+                return this.getDrawer;
+            },
+            set: function (val) {
+                this.changeDrawer(val);
+            }
+        },
+        right() {
+            return this.$vuetify.rtl;
         }
     },
     created() {
@@ -144,6 +163,7 @@ const app = new Vue({
         this.setLocale(locale);
     },
     methods: {
+        ...mapMutations(['changeDrawer']),
         setLocale(locale) {
             let currentLocale = this.$vuetify.lang.current = locale;
             if (this.locale !== currentLocale) {
@@ -171,7 +191,7 @@ const app = new Vue({
             }
 
             this.$vuetify.rtl = isArabic;
-            this.$store.commit('changeDrawer');
+            //this.$store.commit('changeDrawer');
         }
     }
 });
