@@ -12,7 +12,8 @@
 */
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Auth;
+//use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
@@ -44,22 +45,21 @@ Route::get('/home', 'HomeController@index')->name('home');
 $locales = config('app.locales');
 
 Route::get('/', function (Request $request) {
+    $locale = substr($request->headers->get('accept_language'), 0, 2) ?? config('translatable.fallback_locale');
 
-    $locale = substr($request->headers->get('accept_language'), 0, 2) ?? config('app.fallback_locale');
-    if (in_array($locale, config('app.locales'))) {
-        App::setLocale($locale);
-
+    if (in_array($locale, config('translatable.locales'))) {
         return redirect("/{$locale}");
 
     } else {
-
-        return redirect('/' . config('app.fallback_locale'));
+        return redirect('/' . config('translatable.fallback_locale'));
     }
 });
 
 foreach ($locales as $locale) {
     Route::prefix($locale)->middleware('lang')->group(function () {
-
+        Route::get('/', function() {
+           return view('welcome');
+        });
     });
 }
 
