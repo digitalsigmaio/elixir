@@ -39,7 +39,14 @@ Route::prefix('ds-admin')->namespace('Admin')->group(function(){
 });
 
 Route::get('/home', 'HomeController@index')->name('home');
-
+/*app()->singleton('Client', function() {
+    $ahmed = new \App\User();
+    $ahmed->name = 'Ahmed';
+   return $ahmed;
+});*/
+Route::get('/test', function(\App\User $user) {
+    dd(app('App\User'), app('App\User'));
+});
 /******************** Public Area ************************/
 
 $locales = config('app.locales');
@@ -49,7 +56,6 @@ Route::get('/', function (Request $request) {
 
     if (in_array($locale, config('translatable.locales'))) {
         return redirect("/{$locale}");
-
     } else {
         return redirect('/' . config('translatable.fallback_locale'));
     }
@@ -66,6 +72,8 @@ foreach ($locales as $locale) {
 Route::middleware('lang')->get('/{any}', function () {
     abort(404);
 })->where('any', '.*');
+
+
 
 
 
