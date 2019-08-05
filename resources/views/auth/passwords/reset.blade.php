@@ -1,65 +1,69 @@
-@extends('layouts.app')
+@extends('layouts.auth')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('password.update') }}">
-                        @csrf
-
-                        <input type="hidden" name="token" value="{{ $token }}">
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}" required autocomplete="email" autofocus>
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Reset Password') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<v-container fluid fill-height>
+    <v-layout align-center justify-center>
+        <v-flex xs12 sm10 md8 lg5>
+            <v-card class="elevation-12">
+                <v-card-title>
+                    <v-img
+                            max-width="30%"
+                            src="https://digitalsigma.io/assets/img/logo_md.webp"
+                            class="mx-auto"></v-img>
+                </v-card-title>
+                <v-toolbar dark color="primary">
+                    <v-toolbar-title>{{ __('Reset Password') }}</v-toolbar-title>
+                </v-toolbar>
+                <v-form action="{{ route('password.update') }}" method="post">
+                    @csrf
+                    <input type="hidden" name="token" value="{{ $token }}">
+                    <v-card-text>
+                        <v-text-field
+                                prepend-icon="email"
+                                name="email"
+                                label="{{ __('E-Mail Address') }}"
+                                type="email"
+                                value="{{ old('email') }}"
+                                autocomplete="email"
+                                required
+                        ></v-text-field>
+                        @error('email')
+                        <span class="red--text" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                        <v-text-field
+                                id="password"
+                                prepend-icon="lock"
+                                name="password"
+                                label="{{ __('Password') }}"
+                                type="password"
+                                autocomplete="new-password"
+                                required
+                        ></v-text-field>
+                        @error('password')
+                        <span class="red--text" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                        <v-text-field
+                                id="confirm-password"
+                                prepend-icon="lock"
+                                name="password_confirmation"
+                                label="{{ __('Confirm Password') }}"
+                                type="password"
+                                autocomplete="new-password"
+                                required
+                        ></v-text-field>
+                    </v-card-text>
+                    <v-card-actions>
+                        <v-spacer></v-spacer>
+                        <v-btn color="primary" type="submit">{{ __('Reset Password') }}</v-btn>
+                    </v-card-actions>
+                </v-form>
+            </v-card>
+        </v-flex>
+    </v-layout>
+</v-container>
 @endsection

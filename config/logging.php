@@ -36,7 +36,7 @@ return [
     'channels' => [
         'stack' => [
             'driver' => 'stack',
-            'channels' => ['daily'],
+            'channels' => ['elixir'],
             'ignore_exceptions' => false,
         ],
 
@@ -49,6 +49,13 @@ return [
         'daily' => [
             'driver' => 'daily',
             'path' => storage_path('logs/laravel.log'),
+            'level' => 'debug',
+            'days' => 14,
+        ],
+
+        'elixir' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/elixir/elixir.log'),
             'level' => 'debug',
             'days' => 14,
         ],
