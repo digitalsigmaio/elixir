@@ -10,9 +10,9 @@
             <v-card-actions>
                 <v-btn
                         :loading="loading"
-                        flat
+                        text
                         @click="confirm">Yes</v-btn>
-                <v-btn flat @click="closeDialog">Cancel</v-btn>
+                <v-btn text @click="closeDialog">Cancel</v-btn>
             </v-card-actions>
         </v-card>
     </v-dialog>

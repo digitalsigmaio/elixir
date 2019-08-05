@@ -19,12 +19,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
-
 /******************** Admin Area ***********************/
 Route::prefix('ds-admin')->namespace('Admin')->group(function(){
 
-    // Login
+    // Authentication
     Route::get('login', 'Auth\LoginController@showLoginForm')->name('admin.login');
     Route::post('login', 'Auth\LoginController@login');
     Route::post('logout', 'Auth\LoginController@logout')->name('logout');
@@ -35,18 +33,36 @@ Route::prefix('ds-admin')->namespace('Admin')->group(function(){
     Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('admin.password.reset');
     Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('admin.password.update');
 
+    // Settings
+    Route::get('/home', 'HomeController@index')->name('home');
+
+    // Home
     Route::get('', 'HomeController@index')->name('admin.home');
+
+    // Settings
+    Route::get('settings', 'HomeController@show')->name('admin.settings');
+    Route::put('settings/info', 'HomeController@info')->name('admin.info');
+    Route::put('settings/password', 'HomeController@password')->name('admin.info');
+
+    // Admins
+    Route::get('admins', 'AdminController@index')->name('admin.admins');
+    Route::post('admins', 'AdminController@store');
+    Route::put('admins/{admin}', 'AdminController@update');
+    Route::delete('admins/{admin}', 'AdminController@destroy');
 });
 
+/******************** User Area ***********************/
+
+// Authentication
+Auth::routes();
+
+// Home
 Route::get('/home', 'HomeController@index')->name('home');
-/*app()->singleton('Client', function() {
-    $ahmed = new \App\User();
-    $ahmed->name = 'Ahmed';
-   return $ahmed;
-});*/
-Route::get('/test', function(\App\User $user) {
-    dd(app('App\User'), app('App\User'));
-});
+
+// Settings
+Route::get('settings', 'HomeController@show')->name('admin.settings');
+Route::put('settings/info', 'HomeController@info')->name('admin.info');
+Route::put('settings/password', 'HomeController@password')->name('admin.info');
 /******************** Public Area ************************/
 
 $locales = config('app.locales');

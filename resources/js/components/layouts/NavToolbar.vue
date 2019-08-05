@@ -27,8 +27,8 @@
         methods: {
             ...mapMutations(['changeDrawer']),
             logout() {
-                axios.post('/ds-admin/logout')
-                    .then(() => { window.location = '/ds-admin/login'; });
+                axios.post('/logout')
+                    .then(() => { window.location = '/'; });
             }
         }
     }

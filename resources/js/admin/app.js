@@ -9,6 +9,7 @@ require('../bootstrap');
 window.Vue = require('vue');
 window.Vuex = require('vuex');
 window.Vuetify = require('vuetify');
+
 import translation from "../util/translation";
 
 Vue.use(Vuex);
@@ -63,7 +64,7 @@ Vue.mixin({
 
 const store = new Vuex.Store({
     state: {
-        drawer: false,
+        drawer: true,
     },
     getters: {
       getDrawer(state) {
@@ -86,6 +87,8 @@ const store = new Vuex.Store({
  */
 Vue.component('nav-drawer', require('./components/layouts/NavDrawer').default); // navigation drawer
 Vue.component('nav-toolbar', require('./components/layouts/NavToolbar').default); // toolbar
+Vue.component('admins', require('./components/admin/List').default); // admins
+Vue.component('admin-settings', require('./components/Settings').default); // admins
 
 // const files = require.context('./', true, /\.vue$/i);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
@@ -95,8 +98,23 @@ Vue.component('nav-toolbar', require('./components/layouts/NavToolbar').default)
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
+import colors from 'vuetify/lib/util/colors';
 
 const app = new Vue({
+    vuetify: new Vuetify({
+        theme: {
+            themes: {
+                light: {
+                    primary: colors.blue.lighten1,
+                }
+            }
+        }
+    }),
     el: '#app',
-    store
+    store,
+    created() {
+        if (this.$vuetify.breakpoint.smAndDown) {
+            this.$store.commit('changeDrawer', false);
+        }
+    }
 });

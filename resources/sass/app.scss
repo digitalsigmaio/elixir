@@ -3,6 +3,7 @@
 
 // Fonts
 @import '~material-design-icons-iconfont/dist/material-design-icons.css';
+@import '~@mdi/font/css/materialdesignicons.min.css';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
 
 // Vuetify
@@ -15,11 +16,6 @@
   border-radius: 8px;
 }
 
-.v-btn__content {
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  border-radius: 4px;
-}
 
 [v-cloak] {
   display: none;

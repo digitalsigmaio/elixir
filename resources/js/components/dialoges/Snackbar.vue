@@ -5,10 +5,10 @@
             top
             :color="color"
     >
-        {{ message }}
+        <span v-html="message"></span>
         <v-btn
                 dark
-                flat
+                text
                 :multi-line="multiline"
                 @click="snackbar = false"
         >

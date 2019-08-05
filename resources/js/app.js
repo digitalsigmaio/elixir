@@ -1,3 +1,5 @@
+import colors from "vuetify/lib/util/colors";
+
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -68,7 +70,7 @@ const store = new Vuex.Store({
     state: {
         locale: 'en',
         pageTitle: '',
-        drawer: false,
+        drawer: true,
     },
     getters: {
         getLocale(state) {
@@ -114,6 +116,9 @@ Vue.use(Vuetify, {
  *
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
+Vue.component('nav-drawer', require('./components/layouts/NavDrawer').default); // navigation drawer
+Vue.component('nav-toolbar', require('./components/layouts/NavToolbar').default); // toolbar
+Vue.component('user-settings', require('./components/Settings').default); // toolbar
 
 // const files = require.context('./', true, /\.vue$/i);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
@@ -126,6 +131,15 @@ Vue.use(Vuetify, {
 
 import {mapGetters, mapMutations} from "vuex";
 const app = new Vue({
+    vuetify: new Vuetify({
+        theme: {
+            themes: {
+                light: {
+                    primary: colors.blue.lighten1,
+                }
+            }
+        }
+    }),
     el: '#app',
     store,
     computed: {
@@ -161,6 +175,9 @@ const app = new Vue({
         let locale = html.getAttribute('lang');
 
         this.setLocale(locale);
+        if (this.$vuetify.breakpoint.smAndDown) {
+            this.drawer = false;
+        }
     },
     methods: {
         ...mapMutations(['changeDrawer']),
